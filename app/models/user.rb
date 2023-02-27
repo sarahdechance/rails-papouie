@@ -4,7 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :offers
+  has_many :offers, dependent: :destroy
+  has_one_attached :profile_picture
+
   validates :first_name, :last_name, :email, :phone_number, presence: true
   validates :pseudo, presence: true, uniqueness: true
+
+
+  private
+
+  def user_params
+    # ne pas oublier la :profile_picture
+  end
+
+
 end
