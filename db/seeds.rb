@@ -6,17 +6,17 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# puts "Deleting User data"
-# User.destroy_all
+puts "Deleting User data"
+User.destroy_all
 
 puts "Generating User data"
 
-4.times do
+6.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   pseudo = "#{first_name}.#{last_name}"
   email = "#{pseudo}@gmail.com"
-  rating = rand(0..5)
+  rating = rand(2..5)
   password = "azerty"
   user = User.new({ first_name: first_name, last_name: last_name, pseudo: pseudo, password: password, email: email, rating: rating })
   user.save

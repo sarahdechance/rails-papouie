@@ -1,28 +1,33 @@
-
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)),
+<div class="index-banner" style="background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)),
 url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
   <div class="container">
-    <h2>Découvrez les meilleur.e.s papouïeur.es.s </h2>
+    <h1><strong>Découvrez les meilleur.e.s papouïeur.es.s </strong></h1>
     <p>Arrêtez d'harceller vos amis pour des papouilles!</p>
-    <p><%= link_to "Devenez un.e papouilleur.se", new_user_registration_path %></p>
+    <p><%= link_to "Devenez un.e papouilleur.se", new_user_registration_path, class: "btn btn-flat" %></p>
   </div>
 </div>
 
 <div class="container">
-  <div class="cards d-flex flex-wrap">
-    <div class="row justify-content-center">
-      <% @offers.each do |offer| %>
-      <div class="col-md-4">
-        <div class="offer-card">
-            <%= cl_image_tag offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'vuwmei7psskhhh6vfua6', heigth: 200, width: 200, crop: :fill %>    <div class="card-description">
-            <p><%= offer.name %></p>
-            <p>A partir de <%= offer.hourly_price %>€ / heure</p>
-            <%= link_to "En savoir plus", offer_path(offer) %>
-          </div>
+  <h2 class="my-4"><strong>Papouilles pour tout.e.s</strong></h2>
+  <p></p>
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio nemo exercitationem veniam facilis. Impedit quos laboriosam reprehenderit in non aspernatur reiciendis, maxime, maiores voluptatem deserunt temporibus nulla magnam porro libero a, quo suscipit modi rerum delectus eum corporis odit. Cum.</p>
+</div>
 
+<div class="container">
+  <div class="cards">
+      <% @offers.each do |offer| %>
+        <div class="card-offer">
+          <%= cl_image_tag offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'background_homepage_n0hfvv' %>
+          <div class="card-description">
+            <h3><strong><%= offer.name %></strong></h3>
+            <p>À partir de <%= offer.hourly_price %>€ / heure</p>
+            <div class="card-details">
+              <p class="icone"><i class="fa-solid fa-star"> <%= offer.user.rating %></i></p>
+              <%= link_to "En savoir plus", offer_path(offer) %>
+            </div>
+          </div>
         </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
