@@ -16,16 +16,16 @@ puts "Generating User data"
   last_name = Faker::Name.last_name
   pseudo = "#{first_name}.#{last_name}"
   email = "#{pseudo}@gmail.com"
-  rating = rand.(0..5)
+  rating = rand(0..5)
   password = "azerty"
-  user = User.new({first_name: first_name, last_name: last_name, pseudo: pseudo, password: password, email: email, rating: rating})
+  user = User.new({ first_name: first_name, last_name: last_name, pseudo: pseudo, password: password, email: email, rating: rating })
   user.save
   puts user
 end
 
 puts "User data generated"
 
-puts "-"*20
+puts "-" * 20
 
 puts "Deleting Offer data"
 Offer.destroy_all
@@ -40,7 +40,7 @@ puts "Generating User data"
     latitude = rand(-90..90)
     description = Faker::Quote.famous_last_words
     user_id = user.id
-    offer = Offer.new({name: name, hourly_price: hourly_price, longitude: longitude, latitude: latitude, description: description, user_id: user_id})
+    offer = Offer.new({ name: name, hourly_price: hourly_price, longitude: longitude, latitude: latitude, description: description, user_id: user_id })
     puts offer.valid?
     puts offer.errors.messages
     offer.save

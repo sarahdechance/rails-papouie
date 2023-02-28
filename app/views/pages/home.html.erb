@@ -1,26 +1,39 @@
-<h2>Explorer Papouïe</h2>
-<div class="how-to-banner">
-</div>
-
-<h2>Découvrez les meilleur.e.s papouïeur.es.s </h2>
-<p>Arrêtez d'harceller vos amis pour des papouilles!</p>
-<p><%= link_to "Devenez un.e papouilleur.se", new_user_registration_path %></p>
-<%= render "shared/flashes" %>
-
-
-<div class="card-grid">
-  <ul>
-    <% @offers.each do |offer| %>
-    <div class="card">
-      <li>
-        <div class="card-image"><%#= if offer.user.profile_picture ? cl_image_tag(offer.user.profile_picture) ; "" %></div>
-        <div class="card-description">
-          <p><%= offer.name %></p>
-          <p><%#= offer.rating? ? offer.rating : "No rating yet" %></p>
-          <p>A partir de <%= offer.hourly_price %>€ / heure</p>
-        </div>
-      </li>
-    </div>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to "#", class: "navbar-brand" do %>
+      <%= cl_image_tag "Logo_papouie" %>
     <% end %>
-  </ul>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "Home", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Messages", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item dropdown">
+            <%= cl_image_tag "Logo_papouie", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item d-flex">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Trouve les papouilleur.e.s", offers_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 </div>
