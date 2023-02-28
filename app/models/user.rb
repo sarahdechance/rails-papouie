@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :offers, dependent: :destroy
   has_one_attached :profile_picture
 
-  validates :first_name, :last_name, :email, :phone_number, presence: true
+  validates :first_name, :last_name, :email, presence: true
   validates :pseudo, presence: true, uniqueness: true
 
 
