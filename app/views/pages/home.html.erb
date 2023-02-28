@@ -1,2 +1,22 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h2>Explorer Papouïe</h2>
+<div class="how-to-banner">
+</div>
+
+<h2>Découvrez les meilleur.e.s papouïeur.es.s </h2>
+<p>Arrêtez d'harceller vos amis pour des papouilles!</p>
+
+<div class="card-grid">
+  <ul>
+    <% @offers.each do |offer| %>
+    <div class="card">
+      <li>
+        <div class="card-image"><%#= if offer.user.profile_picture ? cl_image_tag(offer.user.profile_picture) ; "" %></div>
+        <div class="card-description">
+          <p><%= offer.name %></p>
+          <p>A partir de <%= offer.hourly_price %>€ / heure</p>
+        </div>
+      </li>
+    </div>
+    <% end %>
+  </ul>
+</div>
