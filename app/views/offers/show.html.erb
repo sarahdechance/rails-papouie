@@ -7,7 +7,10 @@
   <p><%= @offer.description %></p>
   <p>Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam;</p>
 
-  <p><%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %></p>
+  <p>
+  <%= link_to "Back offers", offers_path %>
+  <%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %>
+  </p>
   <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; rounded">
     <h2 class="text-center mb-4 text-black">Réservez des papouilles avec <%= @offer.user.first_name %></h2>
     <h3 class="text-center mb-4 text-black"><%= @offer.hourly_price %>€/Heure</h3>
@@ -30,7 +33,7 @@
   </div>
 </div>
 
-<h3>Tu pourrais aimmer aussi les papouilles de....</h3>
+<h3>Tu pourrais aimer aussi les papouilles de....</h3>
 
 
 <div class="container">
