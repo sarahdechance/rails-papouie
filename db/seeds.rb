@@ -16,8 +16,9 @@ puts "Generating User data"
   last_name = Faker::Name.last_name
   pseudo = "#{first_name}.#{last_name}"
   email = "#{pseudo}@gmail.com"
+  rating = rand.(0..5)
   password = "azerty"
-  user = User.new({first_name: first_name, last_name: last_name, pseudo: pseudo, password: password, email: email})
+  user = User.new({first_name: first_name, last_name: last_name, pseudo: pseudo, password: password, email: email, rating: rating})
   user.save
   puts user
 end
