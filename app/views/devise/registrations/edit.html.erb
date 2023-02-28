@@ -10,6 +10,25 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <%= f.input :first_name,
+                required: false,
+                hint: "leave it blank if you don't want to change it",
+                input_html: { autocomplete: "new-first-name" } %>
+    <%= f.input :last_name,
+                required: false,
+                hint: "leave it blank if you don't want to change it",
+                input_html: { autocomplete: "new-last-name" } %>
+    <%= f.input :pseudo,
+                required: false,
+                hint: "leave it blank if you don't want to change it",
+                input_html: { autocomplete: "new-pseudo" } %>
+    <%= f.input :phone_number,
+                required: false,
+                hint: "leave it blank if you don't want to change it" %>
+    <%= f.input :profile_picture, as: :file %>
+    <%= f.input :description,
+                hint: "leave it blank if you don't want to change it"
+                input_html: { autocomplete: "describe yourself" } %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
@@ -33,3 +52,9 @@
 <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
 <%= link_to "Back", :back %>
+
+
+    <%#= f.input :birth_bate, as: :date %>
+    <%= f.input :description,
+                input_html: { autocomplete: "describe yourself" } %>
+    <%= f.input :profile_picture, as: :file %>
