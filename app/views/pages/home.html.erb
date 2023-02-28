@@ -13,6 +13,7 @@
         <div class="card-image"><%#= if offer.user.profile_picture ? cl_image_tag(offer.user.profile_picture) ; "" %></div>
         <div class="card-description">
           <p><%= offer.name %></p>
+          <p><%= offer.rating? ? offer.rating : "No rating yet" %></p>
           <p>A partir de <%= offer.hourly_price %>€ / heure</p>
         </div>
       </li>
