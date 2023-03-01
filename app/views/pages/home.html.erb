@@ -1,47 +1,6 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path('background_homepage_n0hfvv') %>); background-position: center; background-size: cover; height: 800px;">
-  <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-    <div class="container-fluid">
-      <%= link_to "#", class: "navbar-brand" do %>
-        <%= cl_image_tag "Logo_papouie", width: 360, style: "margin-right: 10px;" %>
-      <% end %>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-white">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "Home", "#", class: "nav-link text-white" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Devenir Papouilleuse", "#", class: "nav-link text-white" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Trouve une papouille", offers_path, class: "nav-link text-white" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Messages", "#", class: "nav-link text-white" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link text-white" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, class: "nav-link text-white" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Sign In", new_user_registration_path, class: "nav-link text-white" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Trouve les papouilleur.e.s", offers_path, class: "nav-link text-white" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path('background_homepage_n0hfvv') %>); background-position: center; background-size: cover; height: 800px; margin: top 0;">
 
-  <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; rounded">
+  <div class="container bg-light p-4 offset-md-4 border-radius: 30px" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px;">
     <h2 class="text-center mb-4 text-black">Réservez des papouilles près de chez vous.</h2>
      <%# search_path, method: :get, %>
     <%= form_tag class: "row g-3 pt-0 d-flex" do %>
@@ -75,10 +34,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-      <div class="card" style="">
-        <div class="card-body">
-        </div>
-        <div class="card-footer">
+      <div class="card" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard144_nbsgau') %>); background-position: center; background-size: cover;">
+        <div class="card-body"></div>
+        <div class="card-footer text-center">
           <p class="card-text">Paris</p>
           <h5 class="card-title">Papouille avec apèro maison</h5>
           <h6 class="card-subtitle mb-2 text-muted">À partir de 62€/heure</h6>
@@ -86,7 +44,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <div class="card" style="">
+      <div class="card" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard076_myaxha') %>); background-position: center; background-size: cover;">
         <div class="card-body">
         </div>
         <div class="card-footer">
@@ -97,7 +55,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <div class="card" style="">
+      <div class="card" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard087_pbghsf') %>); background-position: center; background-size: cover;">
         <div class="card-body">
         </div>
         <div class="card-footer">
@@ -108,7 +66,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <div class="card" style="">
+      <div class="card" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard077_xcasj2') %>); background-position: center; background-size: cover;">
         <div class="card-body">
         </div>
         <div class="card-footer">
@@ -119,7 +77,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <div class="card" style="">
+      <div class="card" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard048_ybbxfs') %>); background-position: center; background-size: cover;">
         <div class="card-body">
         </div>
         <div class="card-footer">
@@ -130,7 +88,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <div class="card" style="">
+      <div class="card" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard067_fuoplo') %>); background-position: center; background-size: cover;">
         <div class="card-body">
         </div>
         <div class="card-footer">
