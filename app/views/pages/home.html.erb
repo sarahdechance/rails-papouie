@@ -1,27 +1,144 @@
-<h2>Explorer Papouïe</h2>
-<div class="how-to-banner">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path('background_homepage_n0hfvv') %>); background-position: center; background-size: cover; height: 800px;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <div class="container-fluid">
+      <%= link_to "#", class: "navbar-brand" do %>
+        <%= cl_image_tag "Logo_papouie", width: 360, style: "margin-right: 10px;" %>
+      <% end %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-white">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Home", "#", class: "nav-link text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Devenir Papouilleuse", "#", class: "nav-link text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Trouve une papouille", offers_path, class: "nav-link text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Messages", "#", class: "nav-link text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link text-white" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign In", new_user_registration_path, class: "nav-link text-white" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Trouve les papouilleur.e.s", offers_path, class: "nav-link text-white" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; rounded">
+    <h2 class="text-center mb-4 text-black">Réservez des papouilles près de chez vous.</h2>
+     <%# search_path, method: :get, %>
+    <%= form_tag class: "row g-3 pt-0 d-flex" do %>
+      <div class="col-md-12 text-black p-2 pt-0">
+        <%= label_tag :location, "Où ?", class: "form-label" %>
+        <%= text_field_tag :location, params[:location], class: "form-control", placeholder: "Ville, code postal, adresse" %>
+      </div>
+      <div class="col-md-12 text-black  p-2 pt-0">
+        <%= label_tag :date, "Date", class: "form-label" %>
+        <%= text_field_tag :date, params[:date], class: "form-control", placeholder: "JJ/MM/AAAA" %>
+      </div>
+      <div class="col-md-12 text-black  p-2 pt-0">
+        <%= label_tag :time, "Horaire", class: "form-label" %>
+        <%= text_field_tag :time, params[:time], class: "form-control", placeholder: "HH:MM" %>
+      </div>
+      <div class="col-md-6 p-2 offset-md-7">
+  <%= submit_tag "Recherche", class: "btn btn-secondary ml-auto" %>
+</div>
+    <% end %>
+  </div>
+  <p class="text-end text-white h3" style="position: absolute; bottom: 0; right: 0; margin: 0px 50px 80px 0;">Je peux pas, j'ai papouïe !</p>
 </div>
 
-<h2>Découvrez les meilleur.e.s papouïeur.es.s </h2>
-<p>Arrêtez d'harceller vos amis pour des papouilles!</p>
-<p><%= link_to "Devenez un.e papouilleur.se", new_user_registration_path %></p>
-<%= render "shared/flashes" %>
+<div class="container">
+  <h2 style="margin-top: 70px; margin-bottom: 70px;"><strong>Explorer la Papouïe</strong></h2>
+  <div class="d-flex align-items-center justify-content-center card-category rounded text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path('smiling_forest_girl_juuyws') %>); background-position: center; background-size: cover; height: 300px; margin: 40px 0px 60px 0;">
+    <button type="button" class="btn btn-light">Comment ça marche</button>
+  </div>
+</div>
 
-
-<div class="card-grid">
-  <ul>
-    <% @offers.each do |offer| %>
-    <div class="card">
-      <li>
-        <div class="card-image"><%#= if offer.user.profile_picture ? cl_image_tag(offer.user.profile_picture) ; "" %></div>
-        <div class="card-description">
-          <p><%= offer.name %></p>
-          <p><%#= offer.rating? ? offer.rating : "No rating yet" %></p>
-          <p>A partir de <%= offer.hourly_price %>€ / heure</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
         </div>
-      </li>
-     <%#= render "shared/navbar" %>
+        <div class="card-footer">
+          <p class="card-text">Paris</p>
+          <h5 class="card-title">Papouille avec apèro maison</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 62€/heure</h6>
+        </div>
+      </div>
     </div>
-    <% end %>
-  </ul>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Rome</p>
+          <h5 class="card-title">Papouilles à l'ombre du Colisé</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 49€/heure</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Tel-Aviv</p>
+          <h5 class="card-title">Papouilles “sportive” pour se relaxer en gardant la peche</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 57€/heure</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Nice</p>
+          <h5 class="card-title">Papouille en humour </h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 76 €/heure</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Bordeaux</p>
+          <h5 class="card-title">Papouille avec cours de dance integré</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 577€/personne - 3 jours</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Amsterdam</p>
+          <h5 class="card-title">Papouille au bord du canal</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 76€/personne - 3 jours</h6>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
