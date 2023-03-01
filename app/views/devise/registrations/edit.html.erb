@@ -26,9 +26,6 @@
                 required: false,
                 hint: "leave it blank if you don't want to change it" %>
     <%= f.input :profile_picture, as: :file %>
-    <%= f.input :description,
-                hint: "leave it blank if you don't want to change it"
-                input_html: { autocomplete: "describe yourself" } %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
@@ -54,7 +51,3 @@
 <%= link_to "Back", :back %>
 
 
-    <%#= f.input :birth_bate, as: :date %>
-    <%= f.input :description,
-                input_html: { autocomplete: "describe yourself" } %>
-    <%= f.input :profile_picture, as: :file %>
