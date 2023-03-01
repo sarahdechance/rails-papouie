@@ -30,3 +30,37 @@
     </div>
   </div>
 </div>
+
+
+
+  <%= form_with url: user_path(@user) class: "row g-3 pt-0 d-flex" do  |f| %>
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :hourly_price, "À quel tarif ?", class: "form-label" %>
+      <%= f.text_field :hourly_price, params[:hourly_price], class: "form-control", placeholder: "Le prix pour tes papouilles" %>
+    </div>
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :date, "Date", class: "form-label" %>
+      <%= f.text_field :date, params[:date], class: "form-control", placeholder: "JJ/MM/AAAA" %>
+    </div>
+
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :availability_start, "À partir de quelle heure ?", class: "form-label" %>
+      <%= f.text_field :availability_start, params[:availability_start], class: "form-control", placeholder: "HH:MM" %>
+    </div>
+
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :availability_end, "Jusqu'à quelle heure ?", class: "form-label" %>
+      <%= f.text_field :availability_end, params[:availability_end], class: "form-control", placeholder: "HH:MM" %>
+    </div>
+
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :description, "Pourquoi choisir tes papouilles ?", class: "form-label" %>
+      <%= f.text_field :description, params[:description], class: "form-control", placeholder: "Description" %>
+    </div>
+    <% f.submit value="Envoyer", class: "mt-5 btn btn-secondary btn-lg btn-block w-100" %>
+  <% end %>
+</div>
+
+  validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
+  validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
+
