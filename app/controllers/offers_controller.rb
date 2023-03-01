@@ -3,6 +3,7 @@ class OffersController < ApplicationController
 
   def index
     @offers = Offer.all
+    @offers = Offer.joins(:user).order('rating DESC')
   end
 
   def show
