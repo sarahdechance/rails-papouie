@@ -2,7 +2,7 @@
   color: white;
   padding: 8px 24px;
   border-radius: 4px;
-  background: #333333;
+  background: #3f3f3f;
   transition: background 0.3s ease;
   margin-top: 30px;
 }
@@ -10,4 +10,13 @@
 .btn-flat:hover {
   background: #838383;
   color: white;
+}
+
+.btn-text {
+  color: white;
+  font-size: medium;
+}
+
+.btn-text:hover{
+  color: black;
 }
