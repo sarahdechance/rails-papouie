@@ -47,7 +47,7 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:hourly_price, :availability_start, :availability_end, :latitude, :longitude, :description)
+    params.require(:offer).permit(:hourly_price, :availability_start, :availability_end, :latitude, :longitude, :description, :photos)
     # quid aj current user?
   end
 

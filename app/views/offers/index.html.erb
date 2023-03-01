@@ -1,23 +1,28 @@
-<h2>Explorer Papouïe</h2>
-<div class="how-to-banner">
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)),
+url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
+  <div class="container">
+    <h2>Découvrez les meilleur.e.s papouïeur.es.s </h2>
+    <p>Arrêtez d'harceller vos amis pour des papouilles!</p>
+    <p><%= link_to "Devenez un.e papouilleur.se", new_user_registration_path %></p>
+  </div>
 </div>
 
-<h2>Découvrez les meilleur.e.s papouïeur.es.s </h2>
-<p>Arrêtez d'harceller vos amis pour des papouilles!</p>
-<p><%= link_to "Devenez un.e papouilleur.se", new_user_registration_path %></p>
-<div class="card-grid">
-  <ul>
-    <% @offers.each do |offer| %>
-    <div class="card">
-      <li>
-        <div class="card-image"><%#= if offer.user.profile_picture ? cl_image_tag(offer.user.profile_picture) ; "" %></div>
-        <div class="card-description">
-          <p><%= offer.name %></p>
-          <p>A partir de <%= offer.hourly_price %>€ / heure</p>
-          <%= link_to "En savoir plus", offer_path(offer) %>
+<div class="container">
+  <div class="cards d-flex flex-wrap">
+    <div class="row justify-content-center">
+      <% @offers.each do |offer| %>
+      <div class="col-md-4">
+        <div class="offer-card">
+            <%= cl_image_tag offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'vuwmei7psskhhh6vfua6', heigth: 200, width: 200, crop: :fill %>    <div class="card-description">
+            <p><%= offer.name %></p>
+            <p>A partir de <%= offer.hourly_price %>€ / heure</p>
+            <%= link_to "En savoir plus", offer_path(offer) %>
+          </div>
+
         </div>
-      </li>
+        <% end %>
+      </div>
     </div>
-    <% end %>
-  </ul>
+  </div>
 </div>
