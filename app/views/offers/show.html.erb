@@ -1,6 +1,108 @@
-<%= @offer.name %>
 
-<%= @offer.user %>
-<%= @offer.user.rating %>
+<div>
+  <h2><%= @offer.name %></h2>
+  <p>Rating :<%= @offer.user.rating %></p>
+  <%= cl_image_tag @offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'vuwmei7psskhhh6vfua6', heigth: 300, width: 300, crop: :fill %>
+  <p><strong>Description:</strong></p>
+  <p><%= @offer.description %></p>
+  <p>Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam;</p>
 
-<%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %>
+  <p><%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %></p>
+  <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; rounded">
+    <h2 class="text-center mb-4 text-black">Réservez des papouilles avec <%= @offer.user.first_name %></h2>
+    <h3 class="text-center mb-4 text-black"><%= @offer.hourly_price %>€/Heure</h3>
+    <%= form_tag class: "row g-3 pt-0 d-flex" do %>
+      <div class="col-md-12 text-black p-2 pt-0">
+        <%= label_tag :name, "Your name ?", class: "form-label" %>
+        <%= text_field_tag :name, params[:name], class: "form-control" %>
+      </div>
+      <div class="col-md-12 text-black  p-2 pt-0">
+        <%= label_tag :date, "Date", class: "form-label" %>
+        <%= text_field_tag :date, params[:date], class: "form-control", placeholder: "JJ/MM/AAAA" %>
+      </div>
+      <div class="col-md-12 text-black  p-2 pt-0">
+        <%= label_tag :time, "Horaire", class: "form-label" %>
+        <%= text_field_tag :time, params[:time], class: "form-control", placeholder: "HH:MM" %>
+      </div>
+      <div class="col-md-6 p-2 offset-md-5">
+      <%= submit_tag "Book your Papouie", class: "btn btn-secondary ml-auto" %>
+    <% end %>
+  </div>
+</div>
+
+<h3></h3>
+<h3></h3>
+<h3>Tu pourrais aimmer aussi les papouilles de....</h3>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Aubry</p>
+          <h5 class="card-title">Papouille avec apèro maison</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 62€/heure</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Chiara</p>
+          <h5 class="card-title">Papouilles à l'ombre du Colisé</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 49€/heure</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Guillaume</p>
+          <h5 class="card-title">Papouilles “sportive” pour se relaxer en gardant la peche</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 57€/heure</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Hamza</p>
+          <h5 class="card-title">Papouille en humour </h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 76 €/heure</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Muriel</p>
+          <h5 class="card-title">Papouille avec cours de dance integré</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 577€/personne - 3 jours</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="card" style="">
+        <div class="card-body">
+        </div>
+        <div class="card-footer">
+          <p class="card-text">Jordan</p>
+          <h5 class="card-title">Papouille au bord du canal</h5>
+          <h6 class="card-subtitle mb-2 text-muted">À partir de 76€/personne - 3 jours</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
