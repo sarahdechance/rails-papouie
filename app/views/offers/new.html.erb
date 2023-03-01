@@ -1,0 +1,34 @@
+    <div class="form">
+      <div class="title">Bienvenue</div>
+      <div class="subtitle">Quelles papouilles tu veux proposer et quand? </div>
+      <div class="input-container ic1">
+        <input id="hourly_price" class="input" type="integer" placeholder=" " />
+        <div class="cut"></div>
+        <label for="hourly_price" class="placeholder">Prix par heure</label>
+      </div>
+      <div class="input-container ic2">
+        <input id="availability_start" class="input" type="datetime" placeholder=" " />
+        <div class="cut"></div>
+        <label for="availability_start" class="placeholder">De quelle heure</label>
+      </div>
+      <div class="input-container ic2">
+        <input id="availability_end" class="input" type="datetime" placeholder=" " />
+        <div class="cut cut-short"></div>
+        <label for="availability_end" class="placeholder">à quelle heure</>
+      </div>
+          <div class="input-container ic3">
+        <input id="description" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="description" class="placeholder">Parle nous de tes papouilles</label>
+      </div>
+
+      <button type="text" class="submit">Envoyer</button>
+    </div>
+
+<%= simple_form_for(offers) do |f| %>
+  <%= t.integer :hourly_price %>
+  <%= t.datetime :availability_start %>
+  <%= t.datetime :availability_end %>
+  <%= t.text :description %>
+  <%= t.string :name %>
+<% end %>
