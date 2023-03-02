@@ -1,4 +1,4 @@
-
+<div container>
 <div class="mt-5 p-5 border img-thumbnail">
   <p>
   <%= link_to "Retour aux offres", offers_path %>
@@ -10,6 +10,11 @@
   <p><%= @offer.description %></p>
   <p>Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam;</p>
 
+  <p>
+  <%= link_to "Back offers", offers_path %>
+  <%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %>
+  </p>
+  <div class="container bg-light p-4 offset-md-4 ml-4 mt-5" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; rounded">
   <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; rounded">
   <% if current_user && @offer.user_id == current_user.id %>
       <%= link_to "Modifie ta Papouille", edit_offer_path(@offer), class: "btn-decoration btn btn-secondary" %>
@@ -34,7 +39,7 @@
         <%= text_field_tag :time, params[:time], class: "form-control", placeholder: "HH:MM" %>
       </div>
       <div class="col-md-6 p-2 offset-md-5">
-      <%= submit_tag "Book your Papouie", class: "btn btn-secondary ml-auto" %>
+      <%= submit_tag "Book your Papouie", class: "btn btn-flat" %>
     <% end %>
     <% end %>
   </div>
@@ -43,9 +48,9 @@
 
 <div class="mt-5 p-5 border">
 
+
 <h3>Tu pourrais aimer aussi les papouilles de....</h3>
 <div>
-
     <div class="row">
       <div class="col-md-2">
         <div class="card">
