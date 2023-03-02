@@ -17,7 +17,7 @@
         <%= text_field_tag :time, params[:time], class: "form-control", placeholder: "HH:MM" %>
       </div>
       <div class="col-md-6 p-2 offset-md-7">
-  <%= submit_tag "Recherche", class: "btn btn-secondary ml-auto" %>
+  <%= link_to "Recherche", offers_path, class: "btn btn-secondary ml-auto" %>
 </div>
     <% end %>
   </div>
@@ -32,10 +32,10 @@
 </div>
 
 <div class="container">
-<div class="mb-5">
-  <h2>Découvrez les meilleur.e.s papouilleus.e.s</h2>
-  <h4>Arretez d'harceler vos ami.e.s pour demander des papouilles.</h4>
-</div>
+  <div class="mb-5">
+    <h2>Découvrez les meilleur.e.s papouilleus.e.s</h2>
+    <h4>Arretez d'harceler vos ami.e.s pour demander des papouilles.</h4>
+  </div>
     <div class="row">
       <div class="col-md-2">
         <div class="card">
@@ -136,4 +136,5 @@
       </div>
     </div>
   </div>
+<p></p>
 </div>

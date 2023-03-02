@@ -3,9 +3,11 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
   <div class="container">
     <h1><strong>Découvrez les meilleur.e.s papouïeur.es.s </strong></h1>
     <p>Arrêtez d'harceller vos amis pour des papouilles!</p>
-    <p><%= link_to "Devenez un.e papouilleur.se", new_user_registration_path, class: "btn btn-flat" %></p>
-    <p>Ou <%= link_to "Connectez-vous à votre compte", new_user_session_path, class: "btn-text" %></p>
-
+    <% if user_signed_in? %>
+      <%= link_to "Propose une papouille", new_offer_path, class: "btn btn-flat" %>
+    <% else %>
+      <%= link_to "Deviens papouilleur.se", new_user_registration_path, class: "btn btn-flat" %>
+    <% end  %>
   </div>
 </div>
 
@@ -33,3 +35,5 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
     </div>
   </div>
 </div>
+
+<%= link_to "change profil", edit_user_registration_path %>

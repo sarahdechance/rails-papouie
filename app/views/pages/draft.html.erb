@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="mb-5 mt-5">
+    <h2>Les histoires de nos clients</h2>
+    <h4>Voyages de plusieurs jours organisés par des experts locaux avec activités, repas et logements compris</h4>
+  </div>
+  <div style="display: flex; flex-direction: row; justify-content: space-between;">
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Chiara_Cespi_Polisiani_Photo_2_uybxly') %>); background-position: center; background-size: cover; height: 250px; width: 400px; border-radius: 10px; magrin-right:30px;">
+      </div>
+      <div class="card-footer text-center" style="display: flex; flex-direction: column; align-items: center;">
+  <h6>Chiara - Le bonheur</h6>
+      <p class="card-subtitle">“Papouïe a changé ma vie ! Je suis developer web et j'étais toujours stressé. Papouïe m'a redonné la joie de profiter d'un bon moment et de rencontrer des personnes magnfiques !</p>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230210_by_BenoitBillard021_w9xmwf') %>); background-position: center; background-size: cover; height: 250px; width: 400px; border-radius: 10px;">
+      </div>
+      <div class="card-footer text-center" style="display: flex; flex-direction: column; align-items: center;">
+        <h6>Samuel Z.</h6>
+        <p class="card-subtitle">“J'ai retrouvé la concentration et l'envie"</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard133_likydn') %>); background-position: center; background-size: cover; height: 250px; width: 400px; border-radius: 10px;">
+      </div>
+      <div class="card-footer text-center" style="display: flex; flex-direction: column; align-items: center;">
+        <h6>Riwan et Benoit </h6>
+        <p class="card-subtitle">“On a été jamais été si relaxé... Papouïe une vrai decouverte”</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <%= form_with url: user_path(@user) class: "row g-3 pt-0 d-flex" do  |f| %>
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :hourly_price, "À quel tarif ?", class: "form-label" %>
+      <%= f.text_field :hourly_price, params[:hourly_price], class: "form-control", placeholder: "Le prix pour tes papouilles" %>
+    </div>
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :date, "Date", class: "form-label" %>
+      <%= f.text_field :date, params[:date], class: "form-control", placeholder: "JJ/MM/AAAA" %>
+    </div>
+
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :availability_start, "À partir de quelle heure ?", class: "form-label" %>
+      <%= f.text_field :availability_start, params[:availability_start], class: "form-control", placeholder: "HH:MM" %>
+    </div>
+
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :availability_end, "Jusqu'à quelle heure ?", class: "form-label" %>
+      <%= f.text_field :availability_end, params[:availability_end], class: "form-control", placeholder: "HH:MM" %>
+    </div>
+
+    <div class="col-md-12 text-black p-2 pt-0">
+      <%= f.label :description, "Pourquoi choisir tes papouilles ?", class: "form-label" %>
+      <%= f.text_field :description, params[:description], class: "form-control", placeholder: "Description" %>
+    </div>
+    <% f.submit value="Envoyer", class: "mt-5 btn btn-secondary btn-lg btn-block w-100" %>
+  <% end %>
+</div>
+
+  validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
+  validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
+
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent m-0">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= cl_image_tag "Logo_papouie", style: "width: 200px;" %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if user_signed_in? %>
+      <li class="nav-item dropdown">
+      <%= cl_image_tag @user.profile_picture.attached? ? @user.profile_picture.key : 'smiling_forest_girl_juuyws',
+          class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= link_to "Propose une papouille", new_offer_path, class: "dropdown-item" %>
+          <%= link_to "Mon profil", "#", class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+        </div>
+      </li>
+    <% else %>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-black">
+        <li class="nav-item">
+          <%= link_to "Trouve une papouille", offers_path, class: "nav-link text-black" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Rejoins Papouille", new_user_registration_path, class: "nav-link text-black" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log in", new_user_session_path, class: "nav-link text-black" %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</nav>
+
+
+
+
+
+
+
+          <%= cl_image_tag offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'smiling_forest_girl_juuyws' %>
+
+        <% cl_image_path if current_user.profile_picture.attached? %>
+          <%=  offer.user.profile_picture.key
+            class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% else %>
+          <%= 'app/assets/images/smiling_forest_girl_juuyws.jpeg'
+            class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
