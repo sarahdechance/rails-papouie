@@ -24,7 +24,7 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
           <%= cl_image_tag offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'background_homepage_n0hfvv' %>
           <div class="card-description">
             <h3><strong><%= offer.name %></strong></h3>
-            <p>À partir de <%= offer.hourly_price %>€ / heure</p>
+            <p>À partir de <%= offer.hourly_price %>€ / jour</p>
             <div class="card-details">
               <p class="icone"><i class="fa-solid fa-star"> <%= offer.user.rating %></i></p>
               <%= link_to "En savoir plus", offer_path(offer), class: "smalltext" %>

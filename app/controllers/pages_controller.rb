@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
-  before_action :set_user
 
   #ttt
   def home
@@ -11,14 +10,9 @@ class PagesController < ApplicationController
     @user = current_user
     @bookings = @user.bookings
     @offers = @user.offers
-    @pending_bookigns = []
-    @bookings_requests = Booking.all.select { |booking| booking.user == @user }
+    @booking_requests = Booking.all.select { |booking| booking.offer.user == @user }
+    @pending_requests = Booking.all.select { |booking| booking.offer.user == @user && booking.status == "pending"}
+    @accepted_requests = Booking.all.select { |booking| booking.offer.user == @user && booking.status == "validated"}
+    @refused_requests = Booking.all.select { |booking| booking.offer.user == @user && booking.status == "refused"}
   end
-
-  private
-
-  def set_user
-    @user = current_user
-  end
-
 end
