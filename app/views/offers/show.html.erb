@@ -9,7 +9,13 @@
 
   <p>
   <%= link_to "Back offers", offers_path %>
-  <%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %>
+  <% if user_signed_in? && current_user == @offer.user %>
+    <%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %>
+    <%= link_to "Delete",
+      offer_path(@offer),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+  <% end %>
   </p>
   <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; rounded">
     <h2 class="text-center mb-4 text-black">Réservez des papouilles avec <%= @offer.user.first_name %></h2>
@@ -38,11 +44,6 @@
 
 <h3>Tu pourrais aimer aussi les papouilles de....</h3>
 <div>
-
-
-
-
-
 
     <div class="row">
       <div class="col-md-2">
