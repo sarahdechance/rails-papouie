@@ -1,7 +1,7 @@
 class BookingController < ApplicationController
 
+  #t
   def new
-    #
   end
 
   def create

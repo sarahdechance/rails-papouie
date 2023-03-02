@@ -1,0 +1,114 @@
+<div class="index-banner" style="background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)),
+url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
+  <div class="container">
+    <h1><strong>Propose tes papouilles </strong></h1>
+    <p>Une façon simple pour gagner de l'argent et faire plaisir</p>
+  </div>
+</div>
+
+ <%= link_to "Retourne sur ton offre", offer_path(@offer), class: "btn-decoration btn btn-secondary" %>
+
+<div class="container bg-light p-4" style="position: center; rounde; margin-top: 60px">
+  <h2 class="text-center mb-4 text-black">Les meilleures papouilles... sont les votres !</h2>
+  <p class="text-center text-grey">Ma Papouille</p>
+    <%# search_path, method: :get, %>
+  <%= simple_form_for @offer do |f| %>
+    <%= f.input :name,
+                :label => "Nom de ta papouille",
+                placeholder: "Donne un nom à ta papouille" %>
+    <%= f.input :description,
+                :label => "Pourquoi choisir tes papouilles ?",
+                placeholder: "Description" %>
+    <%= f.input :hourly_price,
+                :label => "À quel tarif ?",
+                placeholder: "Le prix pour tes papouilles" %>
+    <%= f.input :address,
+                :label => "Où la trouver ?",
+                placeholder: "Addresse de ta papouille" %>
+    <%= f.submit "Modifie ta papouille",
+                class: "mt-5 btn btn-secondary btn-lg btn-block w-100" %>
+  <% end %>
+
+
+<div class="container">
+  <h2 style="margin-top: 70px; margin-bottom: 30px; text-align:center"><strong>L'aventure papouilles est en train de commencer ... </strong></h2>
+  <h4 style="font: italic; margin-top: 20px; margin-bottom: 70px; text-align:center"><strong>Une façon simple pour gagner de l'argent et faire plaisir </strong></h4>
+  <div class="d-flex align-items-center justify-content-center card-category rounded text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path('background_homepage_n0hfvv') %>); background-position: center; background-size: cover; height: 300px; margin: 40px 0px 60px 0;">
+  </div>
+</div>
+
+<div class="container">
+  <h2 style="margin-top: 70px; margin-bottom: 30px; text-align:center"><strong>Nos meilleures papouiller.e.s </strong></h2>
+  <h4 style="font: italic; margin-top: 20px; margin-bottom: 70px; text-align:center"><strong>Ils ont déjà fait plaisir à beaucoup des personnes... Tu pourrais être la prochaine ! </strong></h4>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard144_nbsgau') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px"></div>
+      <div class="card-footer text-center" style="height: 200px">
+        <p class="card-text">Paris</p>
+        <h5 class="card-title">Papouille avec apèro maison</h5>
+        <h6 class="card-subtitle mb-2 text-muted">À partir de 62€/heure</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard076_myaxha') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+      </div>
+      <div class="card-footer text-center" style="height: 200px">
+        <p class="card-text">Rome</p>
+        <h5 class="card-title">Papouilles à l'ombre du Colisé</h5>
+        <h6 class="card-subtitle mb-2 text-muted">À partir de 49€/heure</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard087_pbghsf') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+      </div>
+      <div class="card-footer text-center" style="height: 200px">
+        <p class="card-text">Tel-Aviv</p>
+        <h5 class="card-title">Papouilles “sportive” pour se relaxer en gardant la peche</h5>
+        <h6 class="card-subtitle mb-2 text-muted">À partir de 57€/heure</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard077_xcasj2') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+      </div>
+      <div class="card-footer text-center" style="height: 200px">
+        <p class="card-text">Nice</p>
+        <h5 class="card-title">Papouille en humour </h5>
+        <h6 class="card-subtitle mb-2 text-muted">À partir de 76 €/heure</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard048_ybbxfs') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+      </div>
+      <div class="card-footer text-center" style="height: 200px">
+        <p class="card-text">Bordeaux</p>
+        <h5 class="card-title">Papouille avec cours de dance integré</h5>
+        <h6 class="card-subtitle mb-2 text-muted">À partir de 577€/personne - 3 jours</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard067_fuoplo') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+      </div>
+      <div class="card-footer text-center" style="height: 200px">
+        <p class="card-text">Amsterdam</p>
+        <h5 class="card-title">Papouille au bord du canal</h5>
+        <h6 class="card-subtitle mb-2 text-muted">À partir de 76€/personne - 3 jours</h6>
+      </div>
+    </div>
+  </div>
+</div>
