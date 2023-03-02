@@ -5,14 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :offers, dependent: :destroy
+  has_many :bookings
   has_one_attached :profile_picture
 
   validates :first_name, :last_name, :email, presence: true
   validates :pseudo, presence: true, uniqueness: true
 
-  private
 
-  def user_params
-    # ne pas oublier la :profile_picture
-  end
 end

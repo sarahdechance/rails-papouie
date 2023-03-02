@@ -1,0 +1,90 @@
+
+<div class="index-banner" style="background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)),
+url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
+  <div class="container">
+    <h1><strong>Bienvenue <%= @user.first_name.capitalize %> !</strong></h1>
+    <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-flat" %>
+
+  </div>
+</div>
+
+<div class="container">
+  <ul>
+    <li><div class="card-dashboard-category">
+      <div class="card-category-header d-flex">
+        <h2><strong>Mes demandes de Papouilles</strong></h2>
+        <%= link_to "Trouver une papouille", offers_path, class: "btn btn-flat"%>
+      </div>
+      <% if @bookings.empty? == false %>
+        <% @bookings.each do |booking| %>
+          <h4>Papouille du <%= booking.start_date.strftime('%d/%m/%Y')%> </h4>
+          <p>Avec <%= booking.offer.user.first_name %></p>
+          <div class="booking-details">
+            <p>Prix : <%= booking.total_price %> €</p>
+            <% if booking.status == "pending" %>
+              <span class="badge bg-info text-dark"><%= booking.status %></span>
+            <% elsif booking.status == "validated" %>
+              <span class="badge bg-success"><%= booking.status %></span>
+            <% else %>
+              <span class="badge bg-danger"><%= booking.status %></span>
+            <% end %>
+            <% if booking.status == "pending" || booking.status == "validated" %>
+              <%= link_to "Annuler ma demande de Papouille", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p><em>Tu n'as pas encore fait de demande de papouille</em></p>
+      <% end %>
+    </div></li>
+
+    <li><div class="card-dashboard-category">
+      <div class="card-category-header d-flex">
+        <h2><strong>Mes offres de Papouilles</strong></h2>
+        <%= link_to "Proposer une papouille", new_offer_path, class: "btn btn-flat"%>
+      </div>
+
+      <% if @offers.empty? == false %>
+        <% @offers.each do |offer| %>
+          <h4><%= offer.name %></h4>
+          <%= link_to "Modifier ma Papouille", offer_path(offer) %>
+          <%= link_to "Supprimer ma Papouille", offer_path(offer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
+          <p>Située à <%= offer.address %> au prix de <%= offer.hourly_price %>€/jour</p>
+          <p><em>Réservée <%= @bookings.each {|booking| booking.offer == offer }.count %> fois</em></p>
+        <% end %>
+      <% else %>
+        <p><em>Tu n'as pas encore fait d'offre de papouille</em></p>
+      <% end %>
+    </div></li>
+
+    <% if @booking_requests.empty? == false %>
+      <li><div class="card-dashboard-category">
+        <div class="card-category-header d-flex">
+          <h2><strong>Mes requètes :</strong></h2>
+        </div>
+
+          <h3>En attente :</h3>
+            <% @pending_requests.each do |request| %>
+              <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+              <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+                <%= link_to "Valider", validated_booking_path(request), data: {turbo_method: :patch} %>
+                <%= link_to "Refuser", refused_booking_path(request), data: {turbo_method: :patch} %>
+              <% end %>
+
+          <h3>Acceptées:</h3>
+            <% @accepted_requests.each do |request| %>
+              <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+              <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+            <% end %>
+
+          <h3>Refusées:</h3>
+            <% @refused_requests.each do |request| %>
+              <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+              <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+            <% end %>
+
+        <% end %>
+    </div></li>
+
+  </ul>
+</div>
