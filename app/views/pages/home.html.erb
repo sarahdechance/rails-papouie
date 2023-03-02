@@ -1,20 +1,12 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path('background_homepage_n0hfvv') %>); background-position: center; background-size: cover; height: 800px; margin: top 0;">
 
   <div class="container bg-light p-4 offset-md-4 border-radius: 30px" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; border-radius: 10px">
-    <h2 class="text-center mb-4 text-black">Réservez des papouilles près de chez vous.</h2>
+    <h2 class="text-center mb-4 text-black">Découvrez / Réservez des papouilles près de chez vous !</h2>
      <%# search_path, method: :get, %>
     <%= form_tag class: "row g-3 pt-0 d-flex" do %>
       <div class="col-md-12 text-black p-2 pt-0">
         <%= label_tag :location, "Où ?", class: "form-label" %>
         <%= text_field_tag :location, params[:location], class: "form-control", placeholder: "Ville, code postal, adresse" %>
-      </div>
-      <div class="col-md-12 text-black  p-2 pt-0">
-        <%= label_tag :date, "Date", class: "form-label" %>
-        <%= text_field_tag :date, params[:date], class: "form-control", placeholder: "JJ/MM/AAAA" %>
-      </div>
-      <div class="col-md-12 text-black  p-2 pt-0">
-        <%= label_tag :time, "Horaire", class: "form-label" %>
-        <%= text_field_tag :time, params[:time], class: "form-control", placeholder: "HH:MM" %>
       </div>
       <div class="col-md-6 p-2 offset-md-7">
   <%= link_to "Recherche", offers_path, class: "btn btn-secondary ml-auto" %>
@@ -105,5 +97,36 @@
     </div>
   </div>
 
+<div class="container">
+  <div class="mb-5 mt-5">
+    <h2>Les histoires de nos clients</h2>
+    <h4>Voyages de plusieurs jours organisés par des experts locaux avec activités, repas et logements compris</h4>
+  </div>
+  <div style="display: flex; flex-direction: row;">
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Chiara_Cespi_Polisiani_Photo_2_uybxly') %>); background-position: center; background-size: cover; border-radius: 10px;">
+      </div>
+      <div class="card-footer text-center" style="display: flex; flex-direction: column; align-items: center;">
+  <h6>Chiara - Le bonheur</h6>
+      <p class="card-subtitle">“Papouïe a changé ma vie ! Je suis developer web et j'étais toujours stressé. Papouïe m'a redonné la joie de profiter d'un bon moment et de rencontrer des personnes magnfiques !</p>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230210_by_BenoitBillard021_w9xmwf') %>); background-position: center; background-size: cover; height: 250px; width: 400px; border-radius: 10px;">
+      </div>
+      <div class="card-footer text-center" style="display: flex; flex-direction: column; align-items: center;">
+        <h6>Samuel Z.</h6>
+        <p class="card-subtitle">“J'ai retrouvé la concentration et l'envie"</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard133_likydn') %>); background-position: center; background-size: cover; height: 250px; width: 400px; border-radius: 10px;">
+      </div>
+      <div class="card-footer text-center" style="display: flex; flex-direction: column; align-items: center;">
+        <h6>Riwan et Benoit </h6>
+        <p class="card-subtitle">“On a été jamais été si relaxé... Papouïe une vrai decouverte”</p>
+      </div>
+    </div>
+  </div>
 <p></p>
 </div>

@@ -1,5 +1,7 @@
-nav.navbar {
+.navbar {
   height: 70px;
+  background-color: #F4CDDF;
+  list-style: none;
 }
 
 .navbar-lewagon {
@@ -15,4 +17,34 @@ nav.navbar {
   width: 40px;
 }
 
+.form-control-navbar {
+  width: 800px;
+}
 
+.avatar {
+  object-fit: cover;
+  border: solid black;
+}
+
+button {
+  border-style : none;
+}
+
+form {
+  margin-top: 10px;
+}
+
+.btn {
+ background-color: #B62B62;
+}
+
+.btn:hover {
+  background-color:#F4CDDF;
+}
+
+.form-control-navbar {
+  margin: 0 auto;
+  border: none;
+  border:solid 1px #ccc;
+  border-radius: 10px;
+}
