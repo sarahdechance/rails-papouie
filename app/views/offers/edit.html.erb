@@ -6,11 +6,11 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
   </div>
 </div>
 
-
+ <%= link_to "Retourne sur ton offre", offer_path(@offer), class: "btn-decoration btn btn-secondary" %>
 
 <div class="container bg-light p-4" style="position: center; rounde; margin-top: 60px">
   <h2 class="text-center mb-4 text-black">Les meilleures papouilles... sont les votres !</h2>
-  <p class="text-center text-grey"><%= @offer.name %></p>
+  <p class="text-center text-grey">Ma Papouille</p>
     <%# search_path, method: :get, %>
   <%= simple_form_for @offer do |f| %>
     <%= f.input :name,
@@ -28,9 +28,6 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
     <%= f.submit "Modifie ta papouille",
                 class: "mt-5 btn btn-secondary btn-lg btn-block w-100" %>
   <% end %>
-
- <%= link_to "Retourne sur ton offre", offer_path(@offer), class: "btn-decoration mt-5 btn btn-secondary btn-lg btn-block w-100" %>
-
 
 
 <div class="container">

@@ -1,5 +1,8 @@
 
 <div class="mt-5 p-5 border img-thumbnail">
+  <p>
+  <%= link_to "Retour aux offres", offers_path %>
+  </p>
   <h2><%= @offer.name %></h2>
   <p>Rating :<%= @offer.user.rating %></p>
   <%= cl_image_tag @offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'smiling_forest_girl_juuyws', heigth: 850, width: 850, crop: :fill %>
@@ -7,17 +10,14 @@
   <p><%= @offer.description %></p>
   <p>Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam;</p>
 
-  <p>
-  <%= link_to "Back offers", offers_path %>
-  <% if user_signed_in? && current_user == @offer.user %>
-    <%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %>
-    <%= link_to "Delete",
-      offer_path(@offer),
+  <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; rounded">
+  <% if current_user && @offer.user_id == current_user.id %>
+      <%= link_to "Modifie ta Papouille", edit_offer_path(@offer), class: "btn-decoration btn btn-secondary" %>
+      <%= link_to "Supprime ta papouille",
+      offer_path(@offer), class: "btn-decoration btn btn-secondary",
       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
     %>
-  <% end %>
-  </p>
-  <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; rounded">
+  <% else %>
     <h2 class="text-center mb-4 text-black">Réservez des papouilles avec <%= @offer.user.first_name %></h2>
     <h3 class="text-center mb-4 text-black"><%= @offer.hourly_price %>€/Heure</h3>
     <%= form_tag class: "row g-3 pt-0 d-flex" do %>
@@ -35,6 +35,7 @@
       </div>
       <div class="col-md-6 p-2 offset-md-5">
       <%= submit_tag "Book your Papouie", class: "btn btn-secondary ml-auto" %>
+    <% end %>
     <% end %>
   </div>
 </div>
