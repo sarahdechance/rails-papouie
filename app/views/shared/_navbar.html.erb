@@ -1,19 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent m-0">
   <div class="container-fluid">
-    <%= link_to offers_path, class: "navbar-brand" do %>
+    <%= link_to root_path, class: "navbar-brand" do %>
       <%= cl_image_tag "Logo_papouie", style: "width: 200px;" %>
     <% end %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="collapse navbar-collapse align-items-center" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-black">
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "Home", root_path, class: "nav-link text-black" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Deviens Papouilleur.se", new_user_registration_path, class: "nav-link text-black" %>
           </li>
           <li class="nav-item">
             <%= link_to "Trouve une papouille", offers_path, class: "nav-link text-black" %>
@@ -32,7 +26,7 @@
             <%= link_to "Sign In", new_user_registration_path, class: "nav-link text-black" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Trouve les papouilleur.e.s", offers_path, class: "nav-link text-black" %>
+            <%= link_to "Trouve des papouilles", offers_path, class: "nav-link text-black" %>
           </li>
         <% end %>
       </ul>

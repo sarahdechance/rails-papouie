@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
+
   def index
     @offers = Offer.all
     @offers = Offer.joins(:user).order('rating DESC')
