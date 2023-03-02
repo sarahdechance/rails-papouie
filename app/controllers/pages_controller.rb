@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
   before_action :set_user
-  
+
   #tt
   def home
     @offers = Offer.all
@@ -9,6 +9,10 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
+    @bookings = @user.bookings
+    @offers = @user.offers
+    @pending_bookigns = []
+    @bookings_requests = Booking.all.select { |booking| booking.user == @user }
   end
 
   private

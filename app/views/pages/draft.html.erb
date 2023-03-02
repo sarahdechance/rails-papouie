@@ -74,7 +74,7 @@
     </button>
     <% if user_signed_in? %>
       <li class="nav-item dropdown">
-      <%= cl_image_tag @user.profile_picture.attached? ? @user.profile_picture.key : 'smiling_forest_girl_juuyws',
+      <%= cl_image_tag current_user.profile_picture.attached? ? current_user.profile_picture.key : 'smiling_forest_girl_juuyws',
           class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <%= link_to "Propose une papouille", new_offer_path, class: "dropdown-item" %>
@@ -100,16 +100,38 @@
 
 
 
-
-
-
-
-          <%= cl_image_tag offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'smiling_forest_girl_juuyws' %>
-
-        <% cl_image_path if current_user.profile_picture.attached? %>
-          <%=  offer.user.profile_picture.key
-            class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent m-0">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= cl_image_tag "Logo_papouie", style: "width: 200px;" %>
+    <% end %>
+    <div class="collapse navbar-collapse align-items-center" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-black">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link text-black" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Trouve une papouille", offers_path, class: "nav-link text-black" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Propose une papouille", new_offer_path, class: "nav-link text-black" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link text-black" %>
+          </li>
         <% else %>
-          <%= 'app/assets/images/smiling_forest_girl_juuyws.jpeg'
-            class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link text-black" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign In", new_user_registration_path, class: "nav-link text-black" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Trouve des papouilles", offers_path, class: "nav-link text-black" %>
+          </li>
         <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
