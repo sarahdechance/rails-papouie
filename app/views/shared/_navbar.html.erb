@@ -1,15 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent m-0">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= cl_image_tag "Logo_papouie", style: "width: 200px;" %>
+      <%= cl_image_tag "Logo_papouie", style: "width: 300px; margin-top: 20px" %>
     <% end %>
+
+    <form class="d-flex" action="<%= offers_path %>" method="GET">
+      <input class="form-control-navbar me-2" type="search" placeholder="Entrez une localisation" name="location">
+      <button class="btn btn-secondary ml-auto" type="submit">Rechercher</button>
+    </form>
+    <button>
     <% if user_signed_in? %>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown ">
       <%= cl_image_tag current_user.profile_picture.attached? ? current_user.profile_picture.key : 'smiling_forest_girl_juuyws',
-          class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          class: "avatar rounded-circle dropdown-toggle ", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, style: "width: 65px; height: 65px; margin-top:10px" %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <%= link_to "Propose une papouille", new_offer_path, class: "dropdown-item" %>
+
           <%= link_to "Mon profil", dashboard_path, class: "dropdown-item" %>
+
           <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
         </div>
       </li>
@@ -26,5 +34,7 @@
         </li>
       </ul>
     <% end %>
+  </button>
+
   </div>
 </nav>

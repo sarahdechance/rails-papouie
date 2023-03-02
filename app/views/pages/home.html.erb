@@ -1,23 +1,15 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path('background_homepage_n0hfvv') %>); background-position: center; background-size: cover; height: 800px; margin: top 0;">
 
   <div class="container bg-light p-4 offset-md-4 border-radius: 30px" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; border-radius: 10px">
-    <h2 class="text-center mb-4 text-black">Réservez des papouilles près de chez vous.</h2>
+    <h2 class="text-center mb-4 text-black">Découvrez / Réservez des papouilles près de chez vous !</h2>
      <%# search_path, method: :get, %>
     <%= form_tag class: "row g-3 pt-0 d-flex" do %>
       <div class="col-md-12 text-black p-2 pt-0">
         <%= label_tag :location, "Où ?", class: "form-label" %>
         <%= text_field_tag :location, params[:location], class: "form-control", placeholder: "Ville, code postal, adresse" %>
       </div>
-      <div class="col-md-12 text-black  p-2 pt-0">
-        <%= label_tag :date, "Date", class: "form-label" %>
-        <%= text_field_tag :date, params[:date], class: "form-control", placeholder: "JJ/MM/AAAA" %>
-      </div>
-      <div class="col-md-12 text-black  p-2 pt-0">
-        <%= label_tag :time, "Horaire", class: "form-label" %>
-        <%= text_field_tag :time, params[:time], class: "form-control", placeholder: "HH:MM" %>
-      </div>
       <div class="col-md-6 p-2 offset-md-7">
-  <%= link_to "Recherche", offers_path, class: "btn btn-secondary ml-auto" %>
+  <%= link_to "Recherche", offers_path, class: "btn btn-flat" %>
 </div>
     <% end %>
   </div>
@@ -27,7 +19,7 @@
 <div class="container">
   <h2 style="margin-top: 70px; margin-bottom: 70px;"><strong>Explorer la Papouïe</strong></h2>
   <div class="d-flex align-items-center justify-content-center card-category text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path('smiling_forest_girl_juuyws') %>); background-position: center; border-radius: 10px; background-size: cover; height: 300px; margin: 40px 0px 60px 0;">
-    <button type="button" class="btn btn-light">Comment ça marche</button>
+    <button class="btn btn-flat">Comment ça marche</button>
   </div>
 </div>
 
@@ -104,6 +96,3 @@
       </div>
     </div>
   </div>
-
-<p></p>
-</div>

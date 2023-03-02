@@ -27,7 +27,7 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
             <p>À partir de <%= offer.hourly_price %>€ / jour</p>
             <div class="card-details">
               <p class="icone"><i class="fa-solid fa-star"> <%= offer.user.rating %></i></p>
-              <%= link_to "En savoir plus", offer_path(offer) %>
+              <%= link_to "En savoir plus", offer_path(offer), class: "smalltext" %>
             </div>
           </div>
         </div>

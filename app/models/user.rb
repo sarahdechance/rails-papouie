@@ -12,5 +12,4 @@ class User < ApplicationRecord
   validates :pseudo, presence: true, uniqueness: true
 
 
-
 end

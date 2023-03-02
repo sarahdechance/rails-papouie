@@ -1,7 +1,7 @@
 class BookingController < ApplicationController
 
+  #t
   def new
-    raise
     @booking = Booking.new
   end
 
