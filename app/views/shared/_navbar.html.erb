@@ -9,7 +9,7 @@
           class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <%= link_to "Propose une papouille", new_offer_path, class: "dropdown-item" %>
-          <%= link_to "Mon profil", "#", class: "dropdown-item" %>
+          <%= link_to "Mon profil", dashboard_path, class: "dropdown-item" %>
           <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
         </div>
       </li>
