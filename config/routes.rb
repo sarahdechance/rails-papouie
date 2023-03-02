@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :offers
-  resources :bookings
+  resources :bookings, except: %i[index show]
 
 end
