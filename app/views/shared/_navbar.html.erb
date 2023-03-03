@@ -4,7 +4,7 @@
       <%= cl_image_tag "Logo_papouie", style: "width: 300px; margin-top: 20px" %>
     <% end %>
 
-    <%if current_user && params[:controller] == "offers" && params[:action] == "index"  %>
+    <%if current_user && params[:controller] == "offers" && params[:action] == "index" || params[:action] == "show" || params[:action] == "dashbaord" || params[:action] == "homepage" %>
 
     <form class="d-flex" action="<%= offers_path %>" method="GET">
       <%= form_with url: offers_path, method: :get, class: "d-flex me-2 " do %>
