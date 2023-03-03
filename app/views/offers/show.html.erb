@@ -33,27 +33,30 @@
             <h4 class="text-center mb-3">A partir de <%= @offer.hourly_price %>€ / jour</h4>
           </div>
           <%= simple_form_for [@offer, @booking],
-                    html: {
-                      data: {
-                        controller: 'flatpickr'
-                      }
-                    } do |f| %>
+                              :method => 'post',
+                              html: {
+                                class: "form-booking",
+                                data: {
+                                  controller: 'flatpickr'
+                                }
+                              } do |f| %>
             <%= f.input :start_date,
                         as: :string,
                         input_html: {
                           data: {
-                            flatpickr_target: 'startDateInput',
+                            flatpickr_target: "startDateInput",
                           }
-                        } %>
+                        }%>
             <%= f.input :end_date,
                         as: :string,
+                        label: false,
                         input_html: {
                           class: 'd-none',
                           data: {
-                            flatpickr_target: 'endDateInput',
+                            flatpickr_target: "endDateInput",
                           }
-                        } %>
-            <%= f.submit "Envoyer ma demander", class: "btn btn-flat" %>
+                        }%>
+            <%= f.submit "Envoyer ma demander", class: "btn btn-flat"%>
           <% end %>
         <% end %>
       </div>

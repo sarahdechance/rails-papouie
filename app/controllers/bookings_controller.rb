@@ -1,19 +1,11 @@
-class BookingController < ApplicationController
-  before_action :set_booking, only: %i[create edit update destroy validated refused]
-
-
-  def new
-    @offer = Offer.find(params[:offer_id])
-    @booking = Booking.new
-  end
-
+class BookingsController < ApplicationController
+  before_action :set_booking, only: %i[edit update destroy validated refused]
 
   def create
-    raise
-    @booking = Booking.new(booking_params)
     @offer = Offer.find(params[:offer_id])
+    @booking = Booking.new(booking_params)
     @booking.user = current_user
-    @booking.offer_id = @offer
+    @booking.offer = @offer
     if @booking.save
       redirect_to dashboard_path
     else
@@ -22,7 +14,6 @@ class BookingController < ApplicationController
   end
 
   def destroy
-    raise
     @booking.destroy
     redirect_to offers_path, status: :see_other
   end
