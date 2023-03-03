@@ -4,12 +4,12 @@ class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @offers = Offer.joins(:user).order('rating DESC')
     if params[:query].present?
+      @query = params[:query]
       sql_query = "name ILIKE :query OR address ILIKE :query"
       @offers = Offer.where(sql_query, query: "%#{params[:query]}%")
     else
-      @offers = Offer.all
+      @offers = Offer.joins(:user).order('rating DESC')
     end
   end
 
