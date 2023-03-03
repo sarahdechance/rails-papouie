@@ -13,8 +13,8 @@ Rails.application.routes.draw do
 
   resources :bookings, only: %i[show destroy] do
     member do
-      patch "/validated", to: "booking#validated"
-      patch "/refused", to: "booking#refused"
+      patch "/validated", to: "bookings#validated"
+      patch "/refused", to: "bookings#refused"
     end
   end
 
