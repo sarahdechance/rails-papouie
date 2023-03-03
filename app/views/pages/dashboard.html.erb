@@ -10,17 +10,18 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
 
 <div class="container">
   <ul>
-    <li><div class="card-dashboard-category">
-      <div class="card-category-header d-flex">
-        <h2><strong>Mes demandes de Papouilles</strong></h2>
-        <%= link_to "Trouver une papouille", offers_path, class: "btn btn-flat"%>
-      </div>
-      <% if @bookings.empty? == false %>
-        <% @bookings.each do |booking| %>
+  <div class="card-dashboard-category card" style ="margin-top: 20px">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2><strong>Mes demandes de Papouilles</strong></h2>
+      <%= link_to "Trouver une papouille", offers_path, class: "btn btn-flat"%>
+    </div>
+    <% if @bookings.empty? == false %>
+      <% @bookings.each do |booking| %>
+        <div class="card-body">
           <h4>Papouille du <%= booking.start_date.strftime('%d/%m/%Y')%> </h4>
           <p>Avec <%= booking.offer.user.first_name %></p>
           <div class="booking-details">
-            <p>Prix : <%= booking.total_price %> €</p>
+            <p>Prix : <%= booking.offer.hourly_price %> €</p>
             <% if booking.status == "pending" %>
               <span class="badge bg-info text-dark"><%= booking.status %></span>
             <% elsif booking.status == "validated" %>
@@ -33,61 +34,80 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
                   data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
             <%# end %>
           </div>
-        <% end %>
-      <% else %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="card-body">
         <p><em>Tu n'as pas encore fait de demande de papouille</em></p>
-      <% end %>
-    </div></li>
-
-    <li><div class="card-dashboard-category">
-      <div class="card-category-header d-flex">
-        <h2><strong>Mes offres de Papouilles</strong></h2>
-        <%= link_to "Proposer une papouille", new_offer_path, class: "btn btn-flat"%>
       </div>
+    <% end %>
+  </div>
 
-      <% if @offers.empty? == false %>
-        <% @offers.each do |offer| %>
-          <h4><%= offer.name %></h4>
-          <%= link_to "Modifier ma Papouille", edit_offer_path(offer) %>
-          <%= link_to "Supprime ta papouille", offer_path(offer),
-                      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-                      class: "btn-decoration btn btn-flat"%>
-          <p>Située à <%= offer.address %> au prix de <%= offer.hourly_price %>€/jour</p>
-          <p><em>Réservée <%= @bookings.each {|booking| booking.offer == offer }.count %> fois</em></p>
-        <% end %>
-      <% else %>
-        <p><em>Tu n'as pas encore fait d'offre de papouille</em></p>
+  <div class="card-dashboard-category card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h2><strong>Mes offres de Papouilles</strong></h2>
+      <%= link_to "Proposer une papouille", new_offer_path, class: "btn btn-flat" %>
+    </div>
+    <% if @offers.empty? == false %>
+      <% @offers.each do |offer| %>
+        <div class="card-offer">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><%= offer.name %></h4>
+            <div>
+              <%= link_to "Modifier ma Papouille", edit_offer_path(offer), class: "btn-decoration btn btn-link btn-flat" %>
+              <%= link_to "Supprime ta papouille", offer_path(offer),
+                          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+                          class: "btn-decoration btn btn-link btn-flat ml-3" %>
+            </div>
+          </div>
+          <p class="card-offer-location"><%= offer.address %></p>
+          <p class="card-offer-price">Prix : <%= offer.hourly_price %>€/jour</p>
+          <p class="card-offer-reservations"><em>Réservée <%= @bookings.each {|booking| booking.offer == offer }.count %> fois</em></p>
+        </div>
       <% end %>
-    </div></li>
+    <% else %>
+      <p class="card-offer-none"><em>Tu n'as pas encore fait d'offre de papouille</em></p>
+    <% end %>
+  </div>
 
-    <% if @booking_requests.empty? == false %>
-      <li><div class="card-dashboard-category">
-        <div class="card-category-header d-flex">
-          <h2><strong>Mes requètes :</strong></h2>
+<div class="card-dashboard-category card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h2><strong>Mes requètes :</strong></h2>
+  </div>
+
+  <% if @booking_requests.empty? == false %>
+    <ul class="list-unstyled">
+      <li>
+        <div class="card-offer">
+          <h3>En attente :</h3>
+          <% @pending_requests.each do |request| %>
+            <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+            <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+            <div class="text-end">
+              <%= link_to "Valider", validated_booking_path(request), data: {turbo_method: :patch}, class: "btn-decoration btn btn-link btn-flat" %>
+              <%= link_to "Refuser", refused_booking_path(request), data: {turbo_method: :patch}, class: "btn-decoration btn btn-link btn-flat" %>
+            </div>
+          <% end %>
         </div>
 
-          <h3>En attente :</h3>
-            <% @pending_requests.each do |request| %>
-              <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
-              <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
-                <%= link_to "Valider", validated_booking_path(request), data: {turbo_method: :patch} %>
-                <%= link_to "Refuser", refused_booking_path(request), data: {turbo_method: :patch} %>
-              <% end %>
-
+        <div class="card-offer">
           <h3>Acceptées:</h3>
-            <% @accepted_requests.each do |request| %>
-              <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
-              <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
-            <% end %>
+          <% @accepted_requests.each do |request| %>
+            <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+            <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+          <% end %>
+        </div>
 
+        <div class="card-offer">
           <h3>Refusées:</h3>
-            <% @refused_requests.each do |request| %>
-              <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
-              <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
-            <% end %>
-
-        <% end %>
-    </div></li>
-
-  </ul>
+          <% @refused_requests.each do |request| %>
+            <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+            <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  <% else %>
+    <p class="card-offer-none"><em>Aucune requête de réservation pour le moment</em></p>
+  <% end %>
 </div>
