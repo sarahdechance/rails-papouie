@@ -3,10 +3,14 @@ require 'faker'
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
-
   def index
-    @offers = Offer.all
     @offers = Offer.joins(:user).order('rating DESC')
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR address ILIKE :query"
+      @offers = Offer.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @offers = Offer.all
+    end
   end
 
   def show
