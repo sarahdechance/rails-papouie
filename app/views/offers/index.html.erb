@@ -11,11 +11,15 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
   </div>
 </div>
 
-<div class="container">
+<div class="container my-4">
   <% if @offers.nil? %>
-    <h2>Pas encore de papouilles à <%= @query.capitalize %></h2>
+    <h2><strong>Pas encore de papouilles à <%= @query.capitalize %></strong></h2>
   <% else %>
-    <h2 class="my-4"><strong>Papouilles à <%= @query.capitalize %> : </strong></h2>
+    <% if @query.nil? %>
+      <h2><strong>Papouilles pour tout.e.s</strong></h2>
+    <% else %>
+    <h2 class="my-4"><strong>Papouilles à <%= @query.capitalize %> :</strong></h2>
+    <% end %>
   <% end %>
 </div>
 
