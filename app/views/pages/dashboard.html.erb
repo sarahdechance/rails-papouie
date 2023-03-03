@@ -78,35 +78,33 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
 
   <% if @booking_requests.empty? == false %>
     <ul class="list-unstyled">
-      <li>
-        <div class="card-offer">
-          <h3>En attente :</h3>
-          <% @pending_requests.each do |request| %>
-            <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
-            <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
-            <div class="text-end">
-              <%= link_to "Valider", validated_booking_path(request), data: {turbo_method: :patch}, class: "btn-decoration btn btn-link btn-flat" %>
-              <%= link_to "Refuser", refused_booking_path(request), data: {turbo_method: :patch}, class: "btn-decoration btn btn-link btn-flat" %>
-            </div>
-          <% end %>
-        </div>
+      <div class="card-offer">
+        <h3>En attente :</h3>
+        <% @pending_requests.each do |request| %>
+          <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+          <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+          <div class="text-end">
+            <%= link_to "Valider", validated_booking_path(request), data: {turbo_method: :patch}, class: "btn-decoration btn btn-link btn-flat" %>
+            <%= link_to "Refuser", refused_booking_path(request), data: {turbo_method: :patch}, class: "btn-decoration btn btn-link btn-flat" %>
+          </div>
+        <% end %>
+      </div>
 
-        <div class="card-offer">
-          <h3>Acceptées:</h3>
-          <% @accepted_requests.each do |request| %>
-            <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
-            <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
-          <% end %>
-        </div>
+      <div class="card-offer">
+        <h3>Acceptées:</h3>
+        <% @accepted_requests.each do |request| %>
+          <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+          <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+        <% end %>
+      </div>
 
-        <div class="card-offer">
-          <h3>Refusées:</h3>
-          <% @refused_requests.each do |request| %>
-            <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
-            <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
-          <% end %>
-        </div>
-      </li>
+      <div class="card-offer">
+        <h3>Refusées:</h3>
+        <% @refused_requests.each do |request| %>
+          <p>Demande créée le <%= request.created_at.strftime('%d/%m/%Y')%></p>
+          <p>Pour <%= request.offer.name %> le <%= request.start_date.strftime('%d/%m/%Y') %></p>
+        <% end %>
+      </div>
     </ul>
   <% else %>
     <p class="card-offer-none"><em>Aucune requête de réservation pour le moment</em></p>
