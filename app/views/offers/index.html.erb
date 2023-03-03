@@ -12,15 +12,17 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
 </div>
 
 <div class="container">
-  <h2 class="my-4"><strong>Papouilles pour tout.e.s</strong></h2>
-  <p></p>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio nemo exercitationem veniam facilis. Impedit quos laboriosam reprehenderit in non aspernatur reiciendis, maxime, maiores voluptatem deserunt temporibus nulla magnam porro libero a, quo suscipit modi rerum delectus eum corporis odit. Cum.</p>
+  <% if @offers.nil? %>
+    <h2>Pas encore de papouilles à <%= @query.capitalize %></h2>
+  <% else %>
+    <h2 class="my-4"><strong>Papouilles à <%= @query.capitalize %> : </strong></h2>
+  <% end %>
 </div>
 
 <div class="container">
   <div class="cards">
       <% @offers.each do |offer| %>
-        <div class="card-offer">
+        <div class="card-offer-show">
           <%= cl_image_tag offer.user.avatar.attached? ? offer.user.avatar.key : 'background_homepage_n0hfvv' %>
           <div class="card-description">
             <h3><strong><%= offer.name %></strong></h3>
@@ -35,5 +37,3 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
     </div>
   </div>
 </div>
-
-<%= link_to "change profil", edit_user_registration_path %>

@@ -11,13 +11,12 @@ User.destroy_all
 
 puts "Generating User data"
 
-20.times do
+10.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   pseudo = "#{first_name}.#{last_name}"
   email = "#{pseudo}@gmail.com"
-  rating = rand(2..5)
-
+  rating = rand(3..5)
   password = "azerty"
   user = User.new({ first_name: first_name, last_name: last_name, pseudo: pseudo, password: password, email: email, rating: rating })
   user.save
