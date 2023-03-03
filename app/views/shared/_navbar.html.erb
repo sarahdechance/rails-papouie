@@ -4,10 +4,15 @@
       <%= cl_image_tag "Logo_papouie", style: "width: 300px; margin-top: 20px" %>
     <% end %>
 
+    <%if current_user && params[:controller] == "offers" && params[:action] == "index"  %>
+
     <form class="d-flex" action="<%= offers_path %>" method="GET">
-      <input class="form-control-navbar me-2" type="search" placeholder="Entrez une localisation" name="location">
-      <button class="btn btn-secondary ml-auto" type="submit">Rechercher</button>
+      <%= form_with url: offers_path, method: :get, class: "d-flex me-2 " do %>
+      <%= text_field_tag :query, params[:query], class: "search-navbar", placeholder: "Votre recherche..." %>
+      <button class="btn btn-secondary ml-auto" type="submit" style="border-radius: 30px">Rechercher</button>
+     <% end %>
     </form>
+     <% end %>
     <button>
     <% if user_signed_in? %>
       <li class="nav-item dropdown ">
