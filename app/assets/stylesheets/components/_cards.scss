@@ -5,9 +5,10 @@
 }
 
 .card-offer {
-  padding: 2px;
-  width: 300px;
-  margin: 20px;
+  width: 400px;
+  box-shadow: 0px 0px 15px #ced4da;
+  border-radius: 10px;
+  margin: 20px 0 ;
 
 
   img {
@@ -15,6 +16,11 @@
     height: 300px;
     object-fit: cover;
     border-radius: 10px;
+  }
+
+  .card-description,
+  .card-details {
+    padding: 10px ;
   }
 }
 

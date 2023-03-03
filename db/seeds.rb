@@ -17,6 +17,7 @@ puts "Generating User data"
   pseudo = "#{first_name}.#{last_name}"
   email = "#{pseudo}@gmail.com"
   rating = rand(2..5)
+  
   password = "azerty"
   user = User.new({ first_name: first_name, last_name: last_name, pseudo: pseudo, password: password, email: email, rating: rating })
   user.save

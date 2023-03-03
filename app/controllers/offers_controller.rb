@@ -1,3 +1,5 @@
+require 'faker'
+
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
@@ -10,7 +12,7 @@ class OffersController < ApplicationController
   def show
     @offer = Offer.find(params[:id])
     @booking = Booking.new
-    
+    @booking.offer = @offer
     @markers =
       [{
         lat: @offer.latitude,
