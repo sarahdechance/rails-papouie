@@ -30,10 +30,10 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
             <% else %>
               <span class="badge bg-danger"><%= booking.status %></span>
             <% end %>
-            <%# if booking.status == "pending" || booking.status == "validated" %>
+            <% if booking.status == "pending" || booking.status == "validated" %>
               <%= link_to "Annuler ma demande", booking_path(booking),
                   data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-            <%# end %>
+            <% end %>
           </div>
         </div>
       <% end %>
