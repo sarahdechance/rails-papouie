@@ -21,7 +21,8 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
           <h4>Papouille du <%= booking.start_date.strftime('%d/%m/%Y')%> </h4>
           <p>Avec <%= booking.offer.user.first_name %></p>
           <div class="booking-details">
-            <p>Prix : <%= booking.offer.hourly_price %> €</p>
+            <% duration = (booking.end_date.day - booking.start_date.day).to_i + 1 %>
+            <p>Prix total : <%= booking.offer.hourly_price * duration %> €</p>
             <% if booking.status == "pending" %>
               <span class="badge bg-info text-dark"><%= booking.status %></span>
             <% elsif booking.status == "validated" %>
