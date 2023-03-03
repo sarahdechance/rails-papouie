@@ -21,7 +21,7 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
   <div class="cards">
       <% @offers.each do |offer| %>
         <div class="card-offer">
-          <%= cl_image_tag offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'background_homepage_n0hfvv' %>
+          <%= cl_image_tag offer.user.avatar.attached? ? offer.user.avatar.key : 'background_homepage_n0hfvv' %>
           <div class="card-description">
             <h3><strong><%= offer.name %></strong></h3>
             <p>À partir de <%= offer.hourly_price %>€ / jour</p>

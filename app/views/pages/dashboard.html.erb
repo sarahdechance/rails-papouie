@@ -28,9 +28,10 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
             <% else %>
               <span class="badge bg-danger"><%= booking.status %></span>
             <% end %>
-            <% if booking.status == "pending" || booking.status == "validated" %>
-              <%= link_to "Annuler ma demande de Papouille", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-            <% end %>
+            <%# if booking.status == "pending" || booking.status == "validated" %>
+              <%= link_to "Annuler ma demande", booking_path(booking),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            <%# end %>
           </div>
         <% end %>
       <% else %>
@@ -47,8 +48,10 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
       <% if @offers.empty? == false %>
         <% @offers.each do |offer| %>
           <h4><%= offer.name %></h4>
-          <%= link_to "Modifier ma Papouille", offer_path(offer) %>
-          <%= link_to "Supprimer ma Papouille", offer_path(offer), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
+          <%= link_to "Modifier ma Papouille", edit_offer_path(offer) %>
+          <%= link_to "Supprime ta papouille", offer_path(offer),
+                      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+                      class: "btn-decoration btn btn-flat"%>
           <p>Située à <%= offer.address %> au prix de <%= offer.hourly_price %>€/jour</p>
           <p><em>Réservée <%= @bookings.each {|booking| booking.offer == offer }.count %> fois</em></p>
         <% end %>

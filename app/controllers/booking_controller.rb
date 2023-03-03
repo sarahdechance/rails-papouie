@@ -1,9 +1,12 @@
 class BookingController < ApplicationController
+  before_action :set_booking, only: %i[create edit update destroy validated refused]
 
-  #t
+
   def new
+    @offer = Offer.find(params[:offer_id])
     @booking = Booking.new
   end
+
 
   def create
     raise
@@ -18,24 +21,19 @@ class BookingController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    raise
+    @booking.destroy
+    redirect_to offers_path, status: :see_other
   end
 
   def validated
-    @booking = Booking.find(params[:id])
     @booking.status = "validated"
     @booking.save
     redirect_to dashboard_path
   end
 
   def refused
-    @booking = Booking.find(params[:id])
     @booking.status = "refused"
     @booking.save
     redirect_to dashboard_path
@@ -43,10 +41,12 @@ class BookingController < ApplicationController
 
   private
 
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
   end
-
-
 
 end
