@@ -11,7 +11,7 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
   <h2 class="text-center mb-4 text-black">Les meilleures papouilles... sont les votres !</h2>
   <p class="text-center text-grey">Quelles papouilles tu veux proposer et quand? </p>
     <%# search_path, method: :get, %>
-  <%= simple_form_for @offer do |f| %>
+  <%= simple_form_for Offer.new do |f| %>
     <%= f.input :name,
                 :label => "Nom de ta papouille",
                 placeholder: "Donne un nom à ta papouille" %>

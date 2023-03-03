@@ -1,4 +1,3 @@
-require 'faker'
 
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
@@ -25,7 +24,7 @@ class OffersController < ApplicationController
   end
 
   def new
-    @offer = Offer.new
+    @offer = Offer.new()
   end
 
   def create
