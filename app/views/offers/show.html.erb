@@ -8,11 +8,11 @@
       <div class="card-show-content ">
         <h2><strong><%= @offer.name %></strong></h2>
         <% if @offer.user.rating.nil? %>
-          <p><em>Pas encore de note</em></p>
+          <p><em>Pas encore de note pour cette papouille</em></p>
         <% else %>
           <p>Sa note: <%= @offer.user.rating.to_i %>/5</p>
         <% end %>
-        <%= cl_image_tag @offer.user.avatar.attached? ? offer.user.avatar.key : 'smiling_forest_girl_juuyws', crop: :fill %>
+        <%= cl_image_tag @offer.user.avatar.attached? ? @offer.user.avatar.key : 'smiling_forest_girl_juuyws', crop: :fill %>
         <h3 class="mt-5"><strong>Description:</strong></h3>
         <p><%= @offer.description %></p>
         <p>Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam;</p>
@@ -20,7 +20,7 @@
 
       <div class="card-booking">
         <% if current_user && @offer.user_id == current_user.id %>
-          <h3><strong>Gérer son offre : </strong></h3>
+          <h3><strong>Gérer mon offre : </strong></h3>
           <%= link_to "Modifie ta Papouille", edit_offer_path(@offer),
                       class: "btn-decoration btn btn-secondary" %>
           <%= link_to "Supprime ta papouille", offer_path(@offer),

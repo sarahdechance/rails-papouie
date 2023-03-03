@@ -1,4 +1,5 @@
-<div class="index-banner" style="background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)),
+
+<div class="index-banner my-2 " style="background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)),
 url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
   <div class="container">
     <h1><strong>Propose tes papouilles </strong></h1>
@@ -6,9 +7,7 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
   </div>
 </div>
 
-
-
-<div class="container bg-light p-4" style="position: center; rounde; margin-top: 60px">
+<div class="container bg-light p-4 w-90" style="position: center; rounde; margin-top: 60px">
   <h2 class="text-center mb-4 text-black">Les meilleures papouilles... sont les votres !</h2>
   <p class="text-center text-grey">Quelles papouilles tu veux proposer et quand? </p>
     <%# search_path, method: :get, %>
@@ -28,6 +27,8 @@ url('<%= cl_image_path 'smiling_forest_girl_juuyws' %>')">
     <%= f.submit "Créer ma papouille",
                 class: "mt-5 btn btn-flat btn-lg btn-block w-100" %>
   <% end %>
+</div>
+
 
 
 
