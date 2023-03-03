@@ -74,7 +74,7 @@
     </button>
     <% if user_signed_in? %>
       <li class="nav-item dropdown">
-      <%= cl_image_tag current_user.profile_picture.attached? ? current_user.profile_picture.key : 'smiling_forest_girl_juuyws',
+      <%= cl_image_tag current_user.avatar.attached? ? current_user.avatar.key : 'smiling_forest_girl_juuyws',
           class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <%= link_to "Propose une papouille", new_offer_path, class: "dropdown-item" %>
@@ -135,3 +135,22 @@
     </div>
   </div>
 </nav>
+
+
+
+    <%= form_tag class: "row g-3 pt-0 d-flex" do %>
+      <div class="col-md-12 text-black p-2 pt-0">
+        <%= label_tag :name, "Your name ?", class: "form-label" %>
+        <%= text_field_tag :name, params[:name], class: "form-control" %>
+      </div>
+      <div class="col-md-12 text-black  p-2 pt-0">
+        <%= label_tag :date, "Date", class: "form-label" %>
+        <%= text_field_tag :date, params[:date], class: "form-control", placeholder: "JJ/MM/AAAA" %>
+      </div>
+      <div class="col-md-12 text-black  p-2 pt-0">
+        <%= label_tag :time, "Horaire", class: "form-label" %>
+        <%= text_field_tag :time, params[:time], class: "form-control", placeholder: "HH:MM" %>
+      </div>
+      <div class="col-md-6 p-2 offset-md-5">
+      <%= submit_tag "Book your Papouie", class: "btn btn-flat" %>
+    <% end %>

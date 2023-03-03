@@ -25,7 +25,7 @@
     <%= f.input :phone_number,
                 required: false,
                 hint: "leave it blank if you don't want to change it" %>
-    <%= f.input :profile_picture, as: :file %>
+    <%= f.input :avatar, as: :file %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
@@ -49,5 +49,3 @@
 <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
 <%= link_to "Back", :back %>
-
-

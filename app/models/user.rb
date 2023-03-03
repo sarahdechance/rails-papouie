@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :offers, dependent: :destroy
   has_many :bookings
-  has_one_attached :profile_picture
+  has_one_attached :avatar
 
   validates :first_name, :last_name, :email, presence: true
   validates :pseudo, presence: true, uniqueness: true

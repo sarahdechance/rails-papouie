@@ -1,60 +1,72 @@
-<div container>
-<div class="mt-5 p-5 border img-thumbnail">
-  <p>
-  <%= link_to "Retour aux offres", offers_path %>
-  </p>
-  <h2><%= @offer.name %></h2>
-  <p>Rating :<%= @offer.user.rating %></p>
-  <%= cl_image_tag @offer.user.profile_picture.attached? ? offer.user.profile_picture.key : 'smiling_forest_girl_juuyws', heigth: 850, width: 850, crop: :fill %>
-  <h3 class="mt-5"><strong>Description:</strong></h3>
-  <p><%= @offer.description %></p>
-  <p>Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam;</p>
+<div class="out-container bg-light border-top border-bottom">
+  <div class="container-show mt-2">
+    <%= link_to "Retour aux résultats", offers_path, class: "link-secondary p-1" %>
+  </div>
 
-  <p>
-  <%= link_to "Back offers", offers_path %>
-  <%= link_to "Edit the Papouïe offer", edit_offer_path(@offer) %>
-  </p>
-  <div class="container bg-light p-4 offset-md-4 ml-4 mt-5" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; rounded">
-  <div class="container bg-light p-4 offset-md-4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; rounded">
-  <% if current_user && @offer.user_id == current_user.id %>
-      <%= link_to "Modifie ta Papouille", edit_offer_path(@offer), class: "btn-decoration btn btn-secondary" %>
-      <%= link_to "Supprime ta papouille",
-      offer_path(@offer), class: "btn-decoration btn btn-secondary",
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-    %>
-  <% else %>
-    <h2 class="text-center mb-4 text-black">Réservez des papouilles avec <%= @offer.user.first_name %></h2>
-    <h3 class="text-center mb-4 text-black"><%= @offer.hourly_price %>€ / jour</h3>
-    <%= form_tag class: "row g-3 pt-0 d-flex" do %>
-      <div class="col-md-12 text-black p-2 pt-0">
-        <%= label_tag :name, "Your name ?", class: "form-label" %>
-        <%= text_field_tag :name, params[:name], class: "form-control" %>
+  <div class="container-show">
+    <div class="card-show my-3 py-7 d-flex justify-content-between">
+      <div class="card-show-content ">
+        <h2><strong><%= @offer.name %></strong></h2>
+        <% if @offer.user.rating.nil? %>
+          <p><em>Pas encore de note</em></p>
+        <% else %>
+          <p>Sa note: <%= @offer.user.rating.to_i %>/5</p>
+        <% end %>
+        <%= cl_image_tag @offer.user.avatar.attached? ? offer.user.avatar.key : 'smiling_forest_girl_juuyws', crop: :fill %>
+        <h3 class="mt-5"><strong>Description:</strong></h3>
+        <p><%= @offer.description %></p>
+        <p>Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam;</p>
       </div>
-      <div class="col-md-12 text-black  p-2 pt-0">
-        <%= label_tag :date, "Date", class: "form-label" %>
-        <%= text_field_tag :date, params[:date], class: "form-control", placeholder: "JJ/MM/AAAA" %>
+
+      <div class="card-booking">
+        <% if current_user && @offer.user_id == current_user.id %>
+          <h3><strong>Gérer son offre : </strong></h3>
+          <%= link_to "Modifie ta Papouille", edit_offer_path(@offer),
+                      class: "btn-decoration btn btn-secondary" %>
+          <%= link_to "Supprime ta papouille", offer_path(@offer),
+                      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+                      class: "btn-decoration btn btn-secondary"%>
+
+        <% else %>
+          <div class="card-booking-head border-bottom">
+            <h3 class="text-center text-black">Réservez des papouilles avec <%= @offer.user.first_name.capitalize %></h3>
+            <h4 class="text-center mb-3">A partir de <%= @offer.hourly_price %>€ / jour</h4>
+          </div>
+          <%= simple_form_for [@offer, @booking],
+                    html: {
+                      data: {
+                        controller: 'flatpickr'
+                      }
+                    } do |f| %>
+            <%= f.input :start_date,
+                        as: :string,
+                        input_html: {
+                          data: {
+                            flatpickr_target: 'startDateInput',
+                          }
+                        } %>
+            <%= f.input :end_date,
+                        as: :string,
+                        input_html: {
+                          class: 'd-none',
+                          data: {
+                            flatpickr_target: 'endDateInput',
+                          }
+                        } %>
+            <%= f.submit "Envoyer ma demander", class: "btn btn-flat" %>
+          <% end %>
+        <% end %>
       </div>
-      <div class="col-md-12 text-black  p-2 pt-0">
-        <%= label_tag :time, "Horaire", class: "form-label" %>
-        <%= text_field_tag :time, params[:time], class: "form-control", placeholder: "HH:MM" %>
-      </div>
-      <div class="col-md-6 p-2 offset-md-5">
-      <%= submit_tag "Book your Papouie", class: "btn btn-flat" %>
-    <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
-</div>
 
-<div class="mt-5 p-5 border">
-
-
-<h3>Tu pourrais aimer aussi les papouilles de....</h3>
-<div>
+<div class="container-show my-3 py-7">
+  <h3>Tu pourrais aimer aussi les papouilles de....</h3>
     <div class="row">
       <div class="col-md-2">
         <div class="card">
-          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard144_nbsgau') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px"></div>
+          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard144_nbsgau') %>)"></div>
           <div class="card-footer text-center" style="height: 200px">
             <p class="card-text">Paris</p>
             <h5 class="card-title">Papouille avec apèro maison</h5>
@@ -64,7 +76,7 @@
       </div>
       <div class="col-md-2">
         <div class="card">
-          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard076_myaxha') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard076_myaxha') %>)">
           </div>
           <div class="card-footer text-center" style="height: 200px">
             <p class="card-text">Rome</p>
@@ -75,7 +87,7 @@
       </div>
       <div class="col-md-2">
         <div class="card">
-          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard087_pbghsf') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard087_pbghsf') %>)">
           </div>
           <div class="card-footer text-center" style="height: 200px">
             <p class="card-text">Tel-Aviv</p>
@@ -86,7 +98,7 @@
       </div>
       <div class="col-md-2">
         <div class="card">
-          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard077_xcasj2') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard077_xcasj2') %>)">
           </div>
           <div class="card-footer text-center" style="height: 200px">
             <p class="card-text">Nice</p>
@@ -97,7 +109,7 @@
       </div>
       <div class="col-md-2">
         <div class="card">
-          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard048_ybbxfs') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard048_ybbxfs') %>)">
           </div>
           <div class="card-footer text-center" style="height: 200px">
             <p class="card-text">Bordeaux</p>
@@ -108,7 +120,7 @@
       </div>
       <div class="col-md-2">
         <div class="card">
-          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard067_fuoplo') %>); background-position: center; background-size: cover; height: 250px; border-radius: 10px">
+          <div class="card-body" style="background-image: url(<%= cl_image_path('Portraits_LeWagon_20230206_by_BenoitBillard067_fuoplo') %>)">
           </div>
           <div class="card-footer text-center" style="height: 200px">
             <p class="card-text">Amsterdam</p>
@@ -123,3 +135,5 @@
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   </div>
+
+</div>
